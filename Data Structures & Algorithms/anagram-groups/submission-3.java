@@ -1,0 +1,59 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        // HashMap<String,List<String>> map = new HashMap<>();
+        // List<List<String>> result = new ArrayList<>();
+        // for(int i=0;i<strs.length;i++){
+        //     String[] arr = strs[i].split("");
+        //     Arrays.sort(arr);
+        //     String sorted = String.join("",arr);
+
+        //     if(map.containsKey(sorted)){
+        //         List<String> l = map.get(sorted);
+        //         l.add(strs[i]);
+        //         map.put(sorted , l);
+        //     }else{
+        //         List<String> list = new ArrayList<>();
+        //         list.add(strs[i]);
+        //         map.put(sorted , list);
+        //     }
+
+        // }
+
+        // for(Map.Entry<String,List<String>> entry : map.entrySet()){
+        //     result.add(entry.getValue());
+        // }
+
+        // return result;
+
+
+        // HashMap<String,List<String>> map = new HashMap<>();
+
+        // for(String word : strs){
+        //     char[] arr = word.toCharArray();
+        //     Arrays.sort(arr);
+        //     String sorted = new String(arr);
+
+        //     map.computeIfAbsent(sorted , k->new ArrayList<>()).add(word);
+        // }
+
+        // return new ArrayList<>(map.values());
+
+
+        HashMap<String,List<String>> map = new HashMap<>();
+        for(String word : strs){
+            int[] count = new int[26];
+            for(char c : word.toCharArray()){
+                count[c - 'a']++;
+            }
+
+            String sorted = Arrays.toString(count);
+
+            map.computeIfAbsent(sorted , k->new ArrayList<>()).add(word);
+        }
+
+        return new ArrayList<>(map.values());
+
+
+
+    }
+}
